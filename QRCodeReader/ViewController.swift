@@ -70,6 +70,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         view.bringSubviewToFront(label)
         
+        //QR Code Frame View
+        qrCodeframeView = UIView()
+        qrCodeframeView?.layer.borderColor = UIColor.greenColor().CGColor
+        qrCodeframeView?.layer.borderWidth = 2
+        view.addSubview(qrCodeframeView!)
+        view.bringSubviewToFront(qrCodeframeView!)
     }
 
 
