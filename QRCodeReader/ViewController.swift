@@ -77,6 +77,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         view.addSubview(qrCodeframeView!)
         view.bringSubviewToFront(qrCodeframeView!)
     }
+    
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+        
+        qrCodeframeView?.frame = CGRectZero
+        label.text = "No QR code detected"
+        return
+    }
 
 
 }
