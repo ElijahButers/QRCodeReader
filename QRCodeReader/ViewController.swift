@@ -28,6 +28,27 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
 
     @IBAction func scanMe(sender: UIButton) {
+        
+        let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeAudio)
+        
+        var error:NSError?
+        let input:AnyObject!
+        
+        do {
+            
+            input = try AVCaptureDeviceInput(device: captureDevice)
+            
+        } catch let error1 as NSError {
+            
+            error = error1
+            input = nil
+        }
+        
+        if (error !== nil) {
+            
+            print("\(error?.localizedDescription)")
+            return
+        }
     }
 
 }
