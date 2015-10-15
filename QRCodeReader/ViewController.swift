@@ -59,6 +59,17 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+        
+        //Video Player
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        videoPreviewLayer?.frame = view.layer.bounds
+        view.layer.addSublayer(videoPreviewLayer!)
+        
+        captureSession?.startRunning()
+        
+        view.bringSubviewToFront(label)
+        
     }
 
 
