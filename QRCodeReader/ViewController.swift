@@ -49,7 +49,18 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             print("\(error?.localizedDescription)")
             return
         }
+        
+        captureSession = AVCaptureSession()
+        
+        captureSession?.addInput(input as! AVCaptureInput)
+        
+        let captureMetadataOutput = AVCaptureMetadataOutput()
+        captureSession?.addOutput(captureMetadataOutput)
+        
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
     }
+
 
 }
 
