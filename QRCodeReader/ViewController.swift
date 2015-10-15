@@ -80,11 +80,25 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
+        if metadataObjects == nil || metadataObjects.count == 0 {
+        
         qrCodeframeView?.frame = CGRectZero
         label.text = "No QR code detected"
         return
     }
+    
+    let metadateObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        
+        if metadateObj.type == AVMetadataObjectTypeQRCode {
+            
+            let barcodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadateObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
+            qrCodeframeView?.frame = barcodeObject.bounds
+            
+            if metadateObj.stringValue != nil {
+                label.text = metadateObj.stringValue
+            }
+        }
 
-
+}
 }
 
